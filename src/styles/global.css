@@ -1,0 +1,60 @@
+/* stylelint-disable */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "SUITE Variable";
+  src: url("https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/variable/woff2/SUITE-Variable.css");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "SUITE Variable", sans-serif;
+}
+
+.font-headline-1 {
+  @apply text-[28px] leading-[44px] font-bold;
+}
+
+.font-headline-2 {
+  @apply text-[24px] leading-[40px] font-bold;
+}
+
+.font-headline-3 {
+  @apply text-[20px] leading-[32px] font-bold;
+}
+
+.font-headline-4 {
+  @apply text-[20px] leading-[32px] font-semibold;
+}
+
+.font-headline-5 {
+  @apply text-[17px] leading-[28px] font-bold;
+}
+
+.font-headline-6 {
+  @apply text-[17px] leading-[28px] font-semibold;
+}
+
+.font-body-1 {
+  @apply text-[15px] leading-[24px] font-semibold;
+}
+
+.font-body-2 {
+  @apply text-[15px] leading-[24px] font-medium;
+}
+
+.font-body-3 {
+  @apply text-[13px] leading-[20px] font-semibold;
+}
+
+.font-body-4 {
+  @apply text-[13px] leading-[20px] font-medium;
+}
