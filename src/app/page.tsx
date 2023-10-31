@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/atoms/Button";
+import TextField from "@/components/common/TextField";
 import CheckBox from "@/components/atoms/CheckBox";
 import Input from "@/components/atoms/Input";
 import { BackIcon, CheckIcon, SearchIcon, ShareIcon } from "@/components/icon";
@@ -19,6 +20,7 @@ const Home = () => {
       <Button varient="instargram">바보</Button>
       <CheckBox state={state} setState={setState} />
       <Input placeholder="이름을 입력해주세요." />
+      <TextField />
     </div>
   );
 };
