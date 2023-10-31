@@ -3,19 +3,19 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     colors: {
-      gray: {
-        100: "#121222",
-        200: "#262636",
-        300: "#4E4E5E",
-        400: "#9494A4",
-        500: "#BCBCCC",
-        600: "#ECECF0",
-        700: "#FFFFFF",
+      green: {
+        1: "#59B76A",
+        2: "#7AC588",
+        3: "#9BD4A6",
+        4: "#BDE2C3",
+        5: "#DEF1E1",
       },
-      primary: {
-        100: "#FFE7EE",
-        300: "#E93073",
-        400: "#DF2669",
+      black: {
+        1: "#1B1B1B",
+        2: "#494949",
+        3: "#767676",
+        4: "#A4A4A4",
+        5: "#D1D1D1",
       },
       white: "#FFFFFF",
       black: "#000000",

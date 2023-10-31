@@ -1,44 +1,36 @@
 import classNames from "classnames";
 import { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 
-type ButtonVariant = "primary" | "gray" | "white";
-type ButtonSize = "small" | "large";
+type ButtonVariant = "primary" | "instargram" | "white";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children?: ReactNode;
   className?: string;
   varient?: ButtonVariant;
-  size?: ButtonSize;
 }
 
 const Button = ({
-  type = "button",
   onClick,
   children,
   className = "",
-  varient,
-  size,
+  varient = "primary",
   ...props
 }: ButtonProps) => {
   const isPrimary =
+    // eslint-disable-next-line no-nested-ternary
     varient === "primary"
-      ? "bg-primary-300 text-white border-[1px] border-solid border-primary-300 hover:bg-primary-400 hover:border-primary-400"
-      : "bg-white text-black border-[1px] border-solid border-gray-600 hover:bg-gray-600";
-  const buttonBackground =
-    varient === "gray"
-      ? "bg-gray-500 text-white border-[1px] border-solid border-gray-500 hover:bg-gray-400 hover:border-gray-400"
-      : isPrimary;
-
-  const buttonSize =
-    size === "large" ? "px-24 py-3 rounded-lg" : "px-6 py-2 rounded-lg";
+      ? "w-[342px] h-[57px] rounded-[37px] font-button-1 bg-green-1 text-white"
+      : varient === "white"
+      ? "w-[342px] h-[57px] rounded-[37px] font-button-1 bg-white border border-green-1 text-green-1"
+      : "w-[206px] h-[48px] rounded-[37px] bg-green-2 text-white font-button-2";
 
   return (
     <button
       {...props}
-      className={classNames(className, buttonBackground, buttonSize)}
+      className={classNames(className, isPrimary)}
       onClick={onClick}
-      type={type === "submit" ? "submit" : "button"}
+      type="button"
     >
       {children}
     </button>
