@@ -16,9 +16,10 @@ module.exports = {
         3: "#767676",
         4: "#A4A4A4",
         5: "#D1D1D1",
+        6: "#AAAAAA",
+        7: "#000000",
       },
       white: "#FFFFFF",
-      black: "#000000",
     },
     font: {
       headline: {

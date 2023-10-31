@@ -29,3 +29,11 @@ body {
 .font-button-2 {
   @apply text-[14px] font-medium;
 }
+
+.font-checkbox-1 {
+  @apply text-[14px] leading-[19.997px] font-semibold;
+}
+
+.font-checkbox-1 {
+  @apply text-[14px] leading-[19.997px] font-semibold;
+}
