@@ -20,10 +20,10 @@ const CheckBox = ({
   ...props
 }: CheckBoxProps) => {
   const isPrimary =
-    "w-[28px] h-[28px] rounded bg-gray-700 border-[2px] border-solid border-gray-600 flex justify-center items-center";
-  const isCheck = state && "bg-primary-300 border-primary-300";
+    "w-[24px] h-[24px] rounded-[3.789px] border-[1.263px] border-black-3 flex justify-center items-center";
+  const isCheck = state && "bg-green-1 border-green-1";
   return (
-    <>
+    <div className="flex justify-center items-center gap-[7px]">
       <div
         id={id}
         className={classNames(className, isPrimary, isCheck)}
@@ -33,14 +33,10 @@ const CheckBox = ({
         }}
         {...props}
       >
-        <CheckIcon fill={state === true ? "#FFFFFF" : "#ECECF0"} />
+        <CheckIcon fill={state === true ? "#FFFFFF" : "#767676"} />
       </div>
-      {/* {label ? (
-        <label className="" htmlFor={id}>
-          {label}
-        </label>
-      ) : null} */}
-    </>
+      <p className="text-black-3 font-checkbox-1">익명으로 보내기</p>
+    </div>
   );
 };
 
