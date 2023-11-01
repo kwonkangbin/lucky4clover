@@ -1,26 +1,29 @@
-"use client";
-
 import Button from "@/components/atoms/Button";
-import TextField from "@/components/common/TextField";
-import CheckBox from "@/components/atoms/CheckBox";
-import Input from "@/components/atoms/Input";
-import { BackIcon, CheckIcon, SearchIcon, ShareIcon } from "@/components/icon";
-import { useState } from "react";
+import Image from "next/image";
 
 const Home = () => {
-  const [state, setState] = useState(false);
   return (
-    <div>
-      <BackIcon />
-      <CheckIcon fill="#767676" />
-      <SearchIcon />
-      <ShareIcon />
-      <Button varient="white">바보</Button>
-      <Button>dfds</Button>
-      <Button varient="instargram">바보</Button>
-      <CheckBox state={state} setState={setState} />
-      <Input placeholder="이름을 입력해주세요." />
-      <TextField />
+    <div className="w-full h-screen flex flex-col items-center ">
+      <div className="w-[390px] h-screen flex flex-col items-center justify-center">
+        <p className="w-full text-start text-black-1 text-[27px] leading-[38.566px] mb-[52px] pl-[24px]">
+          수능을 맞이해,
+          <br />
+          Name님에게
+          <br />
+          네잎클로버를 선물해주세요
+        </p>
+        <Image
+          width="247"
+          height="358"
+          src="/img/Onboarding.png"
+          alt="온보딩 이미지"
+          className="mb-[64px]"
+        />
+        <div className="flex flex-col gap-[11px]">
+          <Button>Name님에게 선물하기</Button>
+          <Button varient="white">나의 네잎클로버 만들기 / 찾기</Button>
+        </div>
+      </div>
     </div>
   );
 };
