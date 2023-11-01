@@ -3,8 +3,7 @@
 import Button from "@/components/atoms/Button";
 import { supabase } from "@/supabase";
 import Image from "next/image";
-
-const Home = () => {
+const Ondoarding = () => {
   async function signInWithKakao() {
     const { error, data } = await supabase.auth.signInWithOAuth({
       provider: "kakao",
@@ -13,7 +12,6 @@ const Home = () => {
       },
     });
   }
-
   return (
     <div className="w-full h-screen flex flex-col items-center ">
       <div className="w-[390px] h-screen flex flex-col items-center justify-center">
@@ -42,4 +40,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Ondoarding;
