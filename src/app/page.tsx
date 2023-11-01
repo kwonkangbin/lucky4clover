@@ -1,7 +1,7 @@
 import Button from "@/components/atoms/Button";
 import Image from "next/image";
 
-const Home = () => {
+const Ondoarding = () => {
   return (
     <div className="w-full h-screen flex flex-col items-center ">
       <div className="w-[390px] h-screen flex flex-col items-center justify-center">
@@ -28,4 +28,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Ondoarding;
