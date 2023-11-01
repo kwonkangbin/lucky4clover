@@ -1,8 +1,31 @@
+"use client";
+
 import Footer from "@/components/common/Footer";
 import { BackIcon, ClockIcon, ShareIcon } from "@/components/icon";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { supabase } from "@/supabase";
+import { useParams } from "next/navigation";
+import { IMessage } from "../page";
 
 const MessagesDetail = () => {
+  const { id } = useParams();
+  const [message, setMessage] = useState<IMessage>();
+
+  const fetchMessageData = async () => {
+    if (!id) return;
+
+    const { data } = await supabase.from("Message").select("*").eq("id", +id);
+
+    if (!data) return;
+
+    setMessage(data[0]);
+  };
+
+  useEffect(() => {
+    fetchMessageData();
+  }, []);
+
   return (
     <div className="w-[390px] mx-auto px-6 flex flex-col items-center relative pb-[93px]">
       <div className="flex justify-between items-center pt-[30px] pb-[16px] w-full">
@@ -26,23 +49,18 @@ const MessagesDetail = () => {
             />
           </div>
           <div className="flex flex-col justify-start">
-            <h2 className="text-black-2 text-[14px] font-medium">NAME</h2>
+            <h2 className="text-black-2 text-[14px] font-medium">
+              {message?.name}
+            </h2>
             <div className="flex items-center">
               <ClockIcon />
               <p className="ml-[2px] text-black-3 text-[13px] font-light">
-                18:32
+                {message?.created_at.split("T")[1].slice(0, 5)}
               </p>
             </div>
           </div>
         </div>
-        <p className="text-black-3 text-[14px] font-medium">
-          Lorem ipsum dolor sit amet consectetur. Quis netus facilisi
-          pellentesque eget nibh aenean est vitae. Urna potenti viverra viverra
-          nisl id volutpat. Netus id sit nunc morbi leo posuere turpis at fusce.
-          Consequat sem laoreet gravida eget auctor. Vehicula maecenas
-          pellentesque duis suspendisse suspendisse. Proin habitasse tortor
-          feugiat venenatis viverra ultrices sit.
-        </p>
+        <p className="text-black-3 text-[14px] font-medium">{message?.value}</p>
       </div>
       <Footer page="messages" />
     </div>

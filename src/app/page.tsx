@@ -3,6 +3,7 @@
 import Button from "@/components/atoms/Button";
 import { supabase } from "@/supabase";
 import Image from "next/image";
+
 const Ondoarding = () => {
   async function signInWithKakao() {
     const { error, data } = await supabase.auth.signInWithOAuth({
