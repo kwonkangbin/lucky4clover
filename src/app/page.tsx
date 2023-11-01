@@ -6,10 +6,12 @@ import Image from "next/image";
 
 const Home = () => {
   async function signInWithKakao() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { error, data } = await supabase.auth.signInWithOAuth({
       provider: "kakao",
+      options: {
+        redirectTo: `http://localhost:3000/auth/callback`,
+      },
     });
-    console.log(data);
   }
 
   return (
