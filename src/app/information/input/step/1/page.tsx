@@ -7,16 +7,20 @@ import InformationLayout from "@/layouts/InformationLayout";
 import { useRouter } from "next/navigation";
 import ROUTER from "@/constants/router.constant";
 
-const Information = () => {
+const Step1 = () => {
   const router = useRouter();
 
   const handleNextButtonClick = () => {
     router.push(ROUTER.INFORMATION[2]);
   };
 
+  const handleRootButtonClick = () => {
+    router.push(ROUTER.ROOT);
+  };
+
   return (
     <InformationLayout
-      backIcon={<BackIcon />}
+      backIcon={<BackIcon onClick={handleRootButtonClick} />}
       button={<Button onClick={handleNextButtonClick}>확인</Button>}
       title="이름을 입력해주세요"
     >
@@ -25,4 +29,4 @@ const Information = () => {
   );
 };
 
-export default Information;
+export default Step1;
