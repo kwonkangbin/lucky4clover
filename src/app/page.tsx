@@ -1,7 +1,18 @@
+"use client";
+
 import Button from "@/components/atoms/Button";
+import { supabase } from "@/supabase";
 import Image from "next/image";
 
 const Ondoarding = () => {
+  async function signInWithKakao() {
+    const { error, data } = await supabase.auth.signInWithOAuth({
+      provider: "kakao",
+      options: {
+        redirectTo: `http://localhost:3000/auth/callback`,
+      },
+    });
+  }
   return (
     <div className="w-full h-screen flex flex-col items-center ">
       <div className="w-[390px] h-screen flex flex-col items-center justify-center">
@@ -21,7 +32,9 @@ const Ondoarding = () => {
         />
         <div className="flex flex-col gap-[11px]">
           <Button>Name님에게 선물하기</Button>
-          <Button varient="white">나의 네잎클로버 만들기 / 찾기</Button>
+          <Button varient="white" onClick={() => signInWithKakao()}>
+            나의 네잎클로버 만들기 / 찾기
+          </Button>
         </div>
       </div>
     </div>

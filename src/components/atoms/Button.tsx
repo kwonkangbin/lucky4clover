@@ -1,3 +1,5 @@
+"use client";
+
 import classNames from "classnames";
 import { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 

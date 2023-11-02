@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 interface IMessageComponentProps {
-  name: string;
-  message: string;
+  name: string | null;
+  message: string | null;
 }
 
 const MessageComponent = ({ name, message }: IMessageComponentProps) => {
@@ -19,7 +19,7 @@ const MessageComponent = ({ name, message }: IMessageComponentProps) => {
         </div>
         <h2 className="text-black-1 text-[16px] font-bold">{name}</h2>
       </div>
-      <p className="text-black-3 text-[14px] font-medium overflow-hidden text-ellipsis whitespace-nowrap w-[184px]">
+      <p className="text-black-3 text-[14px] font-medium overflow-hidden text-ellipsis whitespace-nowrap w-[184px] text-right">
         {message}
       </p>
     </div>

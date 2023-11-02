@@ -1,10 +1,45 @@
+"use client";
+
 import Footer from "@/components/common/Footer";
 import MessageComponent from "@/components/common/MessageComponent";
-import Rank from "@/components/common/Rank";
 import { BackIcon, SearchIcon, ShareIcon } from "@/components/icon";
-import Image from "next/image";
+import { supabase } from "@/supabase";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
+export interface IMessage {
+  created_at: string;
+  id: number;
+  name: string | null;
+  send_user: string | null;
+  user: string | null;
+  value: string | null;
+}
 
 const Messages = () => {
+  const [messages, setMessages] = useState<IMessage[]>([]);
+
+  const fetchMessageData = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { data } = await supabase
+      .from("Message")
+      .select(`*`)
+      .eq("user", user?.id);
+
+    if (data) {
+      setMessages(data);
+    }
+  };
+
+  useEffect(() => {
+    fetchMessageData();
+  }, []);
+
   return (
     <div className="w-[390px] mx-auto px-6 flex flex-col items-center relative pb-[93px]">
       <div className="flex justify-between items-center pt-[30px] pb-[16px] w-full">
@@ -20,12 +55,14 @@ const Messages = () => {
         </div>
       </div>
 
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13, 14, 15].map((i) => (
-        <MessageComponent
-          key={i}
-          name="Name"
-          message="Lorem ipsum dolor sit ametfjldskajfioewjflkadlksamlck;xzjvixzcpojew;efa"
-        />
+      {messages.map((message) => (
+        <Link href={`/messages/${message.id}`}>
+          <MessageComponent
+            key={message.id}
+            name={message.name}
+            message={message.value}
+          />
+        </Link>
       ))}
       <Footer page="messages" />
     </div>
