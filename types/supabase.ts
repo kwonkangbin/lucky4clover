@@ -56,6 +56,14 @@ export interface Database {
       [_ in never]: never;
     };
     Functions: {
+      getuserbyid: {
+        Args: {
+          user_id: string;
+        };
+        Returns: {
+          raw_user_meta_data: { name: string };
+        }[];
+      };
       getuserranking: {
         Args: {
           user_id: string;

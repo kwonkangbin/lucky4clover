@@ -23,10 +23,23 @@ const Home = () => {
     getUserRanking();
   }, []);
 
+  const onClickCopyClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        `http://localhost:3000?user_id=${userData?.auth_id}`,
+      );
+      alert("클립보드에 링크가 복사되었습니다.");
+    } catch (e) {
+      alert("복사에 실패하였습니다");
+    }
+  };
+
   return (
     <div className="w-[390px] mx-auto px-6 flex flex-col items-center relative">
       <div className="flex justify-between pt-[30px] pb-9 w-full">
-        <BackIcon />
+        <div onClick={() => router.push("/")} className="cursor-pointer">
+          <BackIcon />
+        </div>
         <div
           onClick={async () => {
             supabase.auth.signOut();
@@ -54,7 +67,9 @@ const Home = () => {
       <p className="text-[14px] font-semibold text-center mb-[13px]">
         인스타그램 스토리에 언급하고 응원글을 더 받아보세요
       </p>
-      <Button varient="instargram">인스타그램 스토리에 언급하기</Button>
+      <Button varient="instargram" onClick={onClickCopyClipboard}>
+        나의 네잎클로버 링크 복사하기
+      </Button>
       <Footer page="home" />
     </div>
   );

@@ -38,6 +38,8 @@ const Step2 = () => {
         },
       ]);
     }
+
+    router.push("/home");
   };
 
   const [state, setState] = useState(false);
