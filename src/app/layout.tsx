@@ -1,5 +1,6 @@
 import "@/styles/global.css";
 import type { Metadata } from "next";
+import RecoilRootProvider from "./recoilRootProvider";
 
 export const metadata: Metadata = {
   title: "마인드메이트",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-screen">
+        <RecoilRootProvider>{children}</RecoilRootProvider>
+      </body>
     </html>
   );
 }
