@@ -1,26 +1,23 @@
-"use client";
-
 import "@/styles/global.css";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { Metadata } from "next";
 import RecoilRootProvider from "./recoilRootProvider";
+import QueryProvider from "./queryProvider";
+
+export const metadata: Metadata = {
+  title: "마인드메이트",
+  description: "mindmate",
+};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const queryClient = new QueryClient();
-
   return (
-    <html lang="en">
-      <head>
-        <title>마인드메이트</title>
-      </head>
+    <html lang="ko">
       <body className="min-h-screen">
         <RecoilRootProvider>
-          <QueryClientProvider client={queryClient}>
-            {children}
-          </QueryClientProvider>
+          <QueryProvider>{children}</QueryProvider>
         </RecoilRootProvider>
       </body>
     </html>
