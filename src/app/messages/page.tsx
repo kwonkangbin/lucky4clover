@@ -5,7 +5,6 @@ import MessageComponent from "@/components/common/MessageComponent";
 import { BackIcon, SearchIcon, ShareIcon } from "@/components/icon";
 import { supabase } from "@/supabase";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 
 export interface IMessage {
   created_at: string;
@@ -56,13 +55,12 @@ const Messages = () => {
       </div>
 
       {messages.map((message) => (
-        <Link href={`/messages/${message.id}`}>
-          <MessageComponent
-            key={message.id}
-            name={message.name}
-            message={message.value}
-          />
-        </Link>
+        <MessageComponent
+          key={message.id}
+          id={message.id}
+          name={message.name}
+          message={message.value}
+        />
       ))}
       <Footer page="messages" />
     </div>
