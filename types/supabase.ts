@@ -38,34 +38,14 @@ export interface Database {
           {
             foreignKeyName: "Message_send_user_fkey";
             columns: ["send_user"];
-            referencedRelation: "profiles";
+            isOneToOne: false;
+            referencedRelation: "users";
             referencedColumns: ["id"];
           },
           {
             foreignKeyName: "Message_user_fkey";
             columns: ["user"];
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-        ];
-      };
-      profiles: {
-        Row: {
-          id: string;
-          name: string | null;
-        };
-        Insert: {
-          id: string;
-          name?: string | null;
-        };
-        Update: {
-          id?: string;
-          name?: string | null;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "profiles_id_fkey";
-            columns: ["id"];
+            isOneToOne: false;
             referencedRelation: "users";
             referencedColumns: ["id"];
           },
@@ -76,7 +56,29 @@ export interface Database {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      getuserranking: {
+        Args: {
+          user_id: string;
+        };
+        Returns: {
+          auth_id: string;
+          raw_user_meta_data: { name: string };
+          message_count: number;
+          message_count_rank: number;
+        }[];
+      };
+      getusersranking: {
+        Args: {
+          limit_num: number;
+          offset_num: number;
+        };
+        Returns: {
+          id: string;
+          raw_user_meta_data: { name: string };
+          message_count: number;
+          message_count_rank: number;
+        }[];
+      };
     };
     Enums: {
       [_ in never]: never;
