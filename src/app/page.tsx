@@ -6,13 +6,14 @@ import Image from "next/image";
 
 const Ondoarding = () => {
   async function signInWithKakao() {
-    const { error, data } = await supabase.auth.signInWithOAuth({
+    await supabase.auth.signInWithOAuth({
       provider: "kakao",
       options: {
         redirectTo: `http://localhost:3000/auth/callback`,
       },
     });
   }
+
   return (
     <div className="w-full h-screen flex flex-col items-center ">
       <div className="w-[390px] h-screen flex flex-col items-center justify-center">
