@@ -2,17 +2,31 @@
 
 import Button from "@/components/atoms/Button";
 import { supabase } from "@/supabase";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import Image from "next/image";
 
 const Ondoarding = () => {
-  async function signInWithKakao() {
+  async function signInWithKakao({ type }: { type: string }) {
     const { error, data } = await supabase.auth.signInWithOAuth({
       provider: "kakao",
       options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
+        redirectTo:
+          type === "POST"
+            ? `http://localhost:3001/information/input/step/1`
+            : `http://localhost:3001/auth/callback`,
       },
     });
   }
+
+  const searchParams = useSearchParams();
+  const search = searchParams.get("user_id");
+
+  useEffect(() => {
+    window.localStorage.setItem("user_id", JSON.stringify(search));
+  }, [search]);
+
   return (
     <div className="w-full h-screen flex flex-col items-center ">
       <div className="w-[390px] h-screen flex flex-col items-center justify-center">
@@ -31,8 +45,17 @@ const Ondoarding = () => {
           className="mb-[64px]"
         />
         <div className="flex flex-col gap-[11px]">
-          <Button>Name님에게 선물하기</Button>
-          <Button varient="white" onClick={() => signInWithKakao()}>
+          <Button
+            onClick={() => {
+              signInWithKakao({ type: "POST" });
+            }}
+          >
+            Name님에게 선물하기
+          </Button>
+          <Button
+            varient="white"
+            onClick={() => signInWithKakao({ type: "MY_DATA" })}
+          >
             나의 네잎클로버 만들기 / 찾기
           </Button>
         </div>
