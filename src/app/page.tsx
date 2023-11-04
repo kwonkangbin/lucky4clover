@@ -20,8 +20,8 @@ const Ondoarding = () => {
       options: {
         redirectTo:
           type === "POST"
-            ? `${getURL()}/information/input/step/1`
-            : `${getURL()}/auth/callback`,
+            ? `${getURL()}information/input/step/1`
+            : `${getURL()}auth/callback`,
       },
     });
 
