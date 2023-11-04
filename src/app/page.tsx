@@ -4,6 +4,7 @@ import Button from "@/components/atoms/Button";
 import { supabase } from "@/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import classNames from "classnames";
 import Image from "next/image";
 import { getURL } from "@/utils";
 
@@ -45,14 +46,24 @@ const Ondoarding = () => {
 
   return (
     <div className="w-full h-screen flex flex-col items-center ">
-      <div className="w-[390px] h-screen flex flex-col items-center justify-center">
-        <p className="w-full text-start text-black-1 text-[27px] leading-[38.566px] mb-[52px] pl-[24px]">
-          수능을 맞이해,
-          <br />
-          {userData?.raw_user_meta_data.name}님에게
-          <br />
-          <strong>네잎클로버</strong>를 선물해주세요
-        </p>
+      <div className="max-w-[390px] h-screen flex flex-col items-center justify-center">
+        {window.localStorage.getItem("user_id") !== "null" ? (
+          <p className="w-full text-start text-black-1 text-[27px] leading-[38.566px] mb-[52px] pl-[24px]">
+            수능을 맞이해,
+            <br />
+            {userData?.raw_user_meta_data.name}님에게
+            <br />
+            <strong>네잎클로버</strong>를 선물해주세요
+          </p>
+        ) : (
+          <p className="w-full text-start text-black-1 text-[27px] leading-[38.566px] mb-[52px] pl-[24px]">
+            수능을 맞이해,
+            <br />
+            자신만의
+            <br />
+            <strong>네잎클로버</strong>를 만들어보세요.
+          </p>
+        )}
         <Image
           width="247"
           height="358"
@@ -61,13 +72,18 @@ const Ondoarding = () => {
           className="mb-[64px]"
         />
         <div className="flex flex-col gap-[11px]">
-          <Button
-            onClick={() => {
-              signInWithKakao({ type: "POST" });
-            }}
-          >
-            {userData?.raw_user_meta_data.name}님에게 선물하기
-          </Button>
+          {window.localStorage.getItem("user_id") !== "null" ? (
+            <Button
+              onClick={() => {
+                signInWithKakao({ type: "POST" });
+              }}
+            >
+              {userData?.raw_user_meta_data.name}님에게 선물하기
+            </Button>
+          ) : (
+            <div className="h-[57px]" />
+          )}
+
           <Button
             varient="white"
             onClick={() => signInWithKakao({ type: "MY_DATA" })}
