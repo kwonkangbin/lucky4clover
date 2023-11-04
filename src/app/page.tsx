@@ -19,8 +19,16 @@ const Ondoarding = () => {
       options: {
         redirectTo:
           type === "POST"
-            ? `http://localhost:3000/information/input/step/1`
-            : `http://localhost:3000/auth/callback`,
+            ? `${
+                process.env.NODE_ENV !== "production"
+                  ? "http://localhost:3000"
+                  : "https://fourleaf-frontend.vercel.app"
+              }/information/input/step/1`
+            : `${
+                process.env.NODE_ENV !== "production"
+                  ? "http://localhost:3000"
+                  : "https://fourleaf-frontend.vercel.app"
+              }/auth/callback`,
       },
     });
 
