@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabase";
 import { useParams, useRouter } from "next/navigation";
-import KakaoAdfit from "@/components/common/KakaoAdfit";
+import KakaoAdfit from "../../../components/common/KakaoAdFit";
 import { IMessage } from "../page";
 
 const MessagesDetail = () => {
