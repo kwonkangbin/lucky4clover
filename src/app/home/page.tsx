@@ -26,11 +26,8 @@ const Home = () => {
   const onClickCopyClipboard = async () => {
     try {
       await navigator.clipboard.writeText(
-        `${
-          process.env.NODE_ENV !== "production"
-            ? "http://localhost:3000"
-            : "https://fourleaf-frontend.vercel.app"
-        }?user_id=${userData?.auth_id}`,
+        `https://fourleaf-frontend.vercel.app
+        ?user_id=${userData?.auth_id}`,
       );
       alert("클립보드에 링크가 복사되었습니다.");
     } catch (e) {
