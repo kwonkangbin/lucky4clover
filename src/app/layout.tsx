@@ -19,6 +19,11 @@ export default function RootLayout({
         <RecoilRootProvider>
           <QueryProvider>{children}</QueryProvider>
         </RecoilRootProvider>
+        <script
+          type="text/javascript"
+          src="//t1.daumcdn.net/kas/static/ba.min.js"
+          async
+        />
       </body>
     </html>
   );
