@@ -2,12 +2,12 @@
 
 import Button from "@/components/atoms/Button";
 import Footer from "@/components/common/Footer";
-import { BackIcon, ShareIcon } from "@/components/icon";
+import { BackIcon } from "@/components/icon";
 import { supabase } from "@/supabase";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { fetchUserRanking } from "@/utils";
+import { fetchUserRanking, getURL } from "@/utils";
 import { IUserData } from "../ranking/page";
 
 const Home = () => {
@@ -26,7 +26,7 @@ const Home = () => {
   const onClickCopyClipboard = async () => {
     try {
       await navigator.clipboard.writeText(
-        `https://fourleaf-frontend.vercel.app
+        `${getURL()}
         ?user_id=${userData?.auth_id}`,
       );
       alert("클립보드에 링크가 복사되었습니다.");

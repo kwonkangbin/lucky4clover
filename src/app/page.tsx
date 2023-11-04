@@ -5,6 +5,7 @@ import { supabase } from "@/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { getURL } from "@/utils";
 
 const Ondoarding = () => {
   const router = useRouter();
@@ -19,8 +20,8 @@ const Ondoarding = () => {
       options: {
         redirectTo:
           type === "POST"
-            ? `https://fourleaf-frontend.vercel.app/information/input/step/1`
-            : `https://fourleaf-frontend.vercel.app/auth/callback`,
+            ? `${getURL()}/information/input/step/1`
+            : `${getURL()}/auth/callback`,
       },
     });
 
