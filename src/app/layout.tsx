@@ -15,6 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-4793524087489955" />
+      </head>
       <body className="min-h-screen">
         <RecoilRootProvider>
           <QueryProvider>{children}</QueryProvider>
