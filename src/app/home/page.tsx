@@ -36,19 +36,22 @@ const Home = () => {
 
   return (
     <div className="w-[390px] mx-auto px-6 flex flex-col items-center relative">
-      <div className="flex justify-between pt-[30px] pb-9 w-full">
+      <div className="flex justify-between items-center pt-[30px] pb-9 w-full">
         <div onClick={() => router.push("/")} className="cursor-pointer">
           <BackIcon />
         </div>
-        <div
+        <button
+          type="button"
           onClick={async () => {
-            supabase.auth.signOut();
-            router.refresh();
+            await supabase.auth.signOut();
+            router.push("/");
           }}
-          className="cursor-pointer"
+          className="cursor-pointer p-[10px] inline-flex justify-center items-center"
         >
-          <ShareIcon />
-        </div>
+          <p className="text-black-2 text-center text-[14px] font-semibold">
+            로그아웃
+          </p>
+        </button>
       </div>
       <h1 className="font-semibold text-[26px] leading-[37px] text-left w-full">
         {userData?.message_count}명의 친구들이 <br />{" "}
