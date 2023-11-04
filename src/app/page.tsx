@@ -51,7 +51,7 @@ const Ondoarding = () => {
           <br />
           {userData?.raw_user_meta_data.name}님에게
           <br />
-          네잎클로버를 선물해주세요
+          <strong>네잎클로버</strong>를 선물해주세요
         </p>
         <Image
           width="247"
