@@ -9,6 +9,7 @@ import { useInfiniteQuery } from "react-query";
 import Image from "next/image";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useObserver } from "@/hooks/useObserver";
+import { useRouter } from "next/navigation";
 
 export interface IUserData {
   auth_id: string;
@@ -27,8 +28,8 @@ export interface IUsersData {
 const LIMIT = 20;
 
 const Ranking = () => {
+  const router = useRouter();
   const [userData, setUserData] = useState<IUserData>();
-  const [usersData, setUsersData] = useState<IUsersData[]>([]);
 
   async function getUserRanking() {
     const data = await fetchUserRanking();
@@ -52,12 +53,15 @@ const Ranking = () => {
   const getUsersRanking = ({ pageParam = 0 }) =>
     fetchUsersRanking(LIMIT, pageParam);
 
-  const { data, fetchNextPage, status, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery<IUsersData[] | null>(["usersRanking"], getUsersRanking, {
+  const { data, fetchNextPage } = useInfiniteQuery<IUsersData[] | null>(
+    ["usersRanking"],
+    getUsersRanking,
+    {
       getNextPageParam: (lastPage, page) => {
         return page.length * LIMIT;
       },
-    });
+    },
+  );
 
   useEffect(() => {
     getUserRanking();
@@ -79,7 +83,9 @@ const Ranking = () => {
     <div className="w-[390px] mx-auto px-6 flex flex-col items-center relative pb-[93px]">
       <div className="flex justify-between items-center pt-[30px] pb-[16px] w-full">
         <div className="flex items-center">
-          <BackIcon />
+          <div onClick={() => router.back()} className="cursor-pointer">
+            <BackIcon />
+          </div>
           <p className="ml-[15px] text-[20px] font-semibold text-black-2">
             랭킹
           </p>

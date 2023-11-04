@@ -2,29 +2,48 @@
 
 import Button from "@/components/atoms/Button";
 import { supabase } from "@/supabase";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
 import Image from "next/image";
 
 const Ondoarding = () => {
+  const router = useRouter();
+
+  const [userData, setUserData] = useState<{
+    raw_user_meta_data: { name: string };
+  } | null>();
+
   async function signInWithKakao({ type }: { type: string }) {
-    const { error, data } = await supabase.auth.signInWithOAuth({
+    await supabase.auth.signInWithOAuth({
       provider: "kakao",
       options: {
         redirectTo:
           type === "POST"
-            ? `http://localhost:3001/information/input/step/1`
-            : `http://localhost:3001/auth/callback`,
+            ? `http://localhost:3000/information/input/step/1`
+            : `http://localhost:3000/auth/callback`,
       },
     });
+
+    if (type !== "POST") {
+      router.push("/home");
+    }
   }
+  const fetchUserData = async (id: string) => {
+    const { data } = await supabase.rpc("getuserbyid", { user_id: id });
+
+    if (data) {
+      setUserData(data[0]);
+    }
+  };
 
   const searchParams = useSearchParams();
   const search = searchParams.get("user_id");
 
   useEffect(() => {
     window.localStorage.setItem("user_id", JSON.stringify(search));
+    if (search) {
+      fetchUserData(search);
+    }
   }, [search]);
 
   return (
@@ -33,7 +52,7 @@ const Ondoarding = () => {
         <p className="w-full text-start text-black-1 text-[27px] leading-[38.566px] mb-[52px] pl-[24px]">
           수능을 맞이해,
           <br />
-          Name님에게
+          {userData?.raw_user_meta_data.name}님에게
           <br />
           네잎클로버를 선물해주세요
         </p>
@@ -50,7 +69,7 @@ const Ondoarding = () => {
               signInWithKakao({ type: "POST" });
             }}
           >
-            Name님에게 선물하기
+            {userData?.raw_user_meta_data.name}님에게 선물하기
           </Button>
           <Button
             varient="white"

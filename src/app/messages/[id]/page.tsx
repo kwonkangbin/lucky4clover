@@ -5,11 +5,12 @@ import { BackIcon, ClockIcon, ShareIcon } from "@/components/icon";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabase";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { IMessage } from "../page";
 
 const MessagesDetail = () => {
   const { id } = useParams();
+  const router = useRouter();
   const [message, setMessage] = useState<IMessage>();
 
   const fetchMessageData = async () => {
@@ -28,15 +29,13 @@ const MessagesDetail = () => {
 
   return (
     <div className="w-[390px] mx-auto px-6 flex flex-col items-center relative pb-[93px]">
-      <div className="flex justify-between items-center pt-[30px] pb-[16px] w-full">
-        <div className="flex items-center">
+      <div className="flex items-center pt-[30px] pb-[16px] w-full">
+        <div onClick={() => router.back()} className="cursor-pointer">
           <BackIcon />
-          <p className="ml-[15px] text-[20px] font-semibold text-black-2">
-            응원글
-          </p>
         </div>
-
-        <ShareIcon />
+        <p className="ml-[15px] text-[20px] font-semibold text-black-2">
+          응원글
+        </p>
       </div>
       <div className="flex px-[17px] py-[20px] items-start w-full shadow-[0_4px_4px_0px_rgba(0,0,0,0.11)] mb-[12px] rounded-[12px] flex-col">
         <div className="flex items-center mb-[30px]">
