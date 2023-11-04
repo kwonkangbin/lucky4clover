@@ -28,6 +28,10 @@ const Ondoarding = () => {
     if (type !== "POST") {
       router.push("/home");
     }
+
+    if (type !== "POST") {
+      router.push("/home");
+    }
   }
   const fetchUserData = async (id: string) => {
     const { data } = await supabase.rpc("getuserbyid", { user_id: id });
