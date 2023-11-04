@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabase";
 import { useParams, useRouter } from "next/navigation";
+import KakaoAdfit from "../../../components/common/KakaoAdFit";
 import { IMessage } from "../page";
 
 const MessagesDetail = () => {
@@ -61,6 +62,7 @@ const MessagesDetail = () => {
         </div>
         <p className="text-black-3 text-[14px] font-medium">{message?.value}</p>
       </div>
+      <KakaoAdfit />
       <Footer page="messages" />
     </div>
   );

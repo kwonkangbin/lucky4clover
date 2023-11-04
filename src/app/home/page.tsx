@@ -26,8 +26,7 @@ const Home = () => {
   const onClickCopyClipboard = async () => {
     try {
       await navigator.clipboard.writeText(
-        `${getURL()}
-        ?user_id=${userData?.auth_id}`,
+        `${getURL()}?user_id=${userData?.auth_id}`,
       );
       alert("클립보드에 링크가 복사되었습니다.");
     } catch (e) {
